@@ -6,6 +6,7 @@
 
 /* Instruções aqui */
 
-# Funcionalidades do Sistema
+## Funcionalidades do Sistema
 
-### 1 - Explicar funcionalidades
+### 1 - Inserir Funcionalidades
+Explicar as funcionalidades
