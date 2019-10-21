@@ -3,8 +3,7 @@
 #### Paulo Victor Laurentino Severiano
 
 ## Como executar o programa
-
-O programa começa solicitando o nome de usuário (admin) e senha (admin) de acesso. Assim que autenticado, o usuário poderá escolher entre as opções e fazer o gerenciamento de recursos, funcinários e clientes de sua loja.
+O sistema inicia com um menu onde o usuário poderá escolher entre as opções para fazer o gerenciamento de recursos e clientes de sua loja.
 
 ## Funcionalidades do Sistema
 
