@@ -45,7 +45,7 @@ Será solicitado o número da nota fiscal e, caso encontrada, o cliente poderá 
 
 ## 10 - Abertura de caixa.
 
-Será solicitado nome de usuário (admin) e senha (admin). Após a abertura, o sistema poderá realizar transações financeiras, como vendas, cancelamentos e trocas.
+Será solicitado nome de usuário (admin), senha (admin) e o valor inicial do caixa. Após a abertura, o sistema poderá realizar transações financeiras, como vendas, cancelamentos e trocas.
 
 ## 11 - Fechamento de caixa.
 
