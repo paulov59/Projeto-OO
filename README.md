@@ -25,7 +25,7 @@ Será solicitado o códido do produto e, caso encontrado, mostrará informaçõe
 
 ## 5 - Realizar venda.
 
-Será solicitada a identificação do cliente e os códigos dos produtos e a forma de pagamento para realização da venda. Será informado o número da nota fiscal referente a venda.
+Será solicitada a identificação do cliente, do funcionário responsável pela venda e os códigos dos produtos e a forma de pagamento para realização da venda. Será informado o número da nota fiscal referente a venda.
 
 ## 6 - Cancelamento de venda.
 
@@ -59,7 +59,7 @@ Será solicitado o número da nota fiscal e, caso encontrada, mostrará informa�
 
 Deve-se adicionar as informações do cliente conforme instruído pelo próprio sistema. 
 
-## 14 - Vizualizar todos clientes .
+## 14 - Vizualizar todos os clientes.
 
 Mostra informações de todos os clientes cadastrados, como nome, cpf e última compra.
 
@@ -71,4 +71,24 @@ Será solicitado o CPF do cliente que, caso encontrado, será removido.
 
 Será solicitado o CPF do cliente e, caso encontrado, mostrará informações do cadastro, como nome, cpf e última compra.
 
-## 17 - Encerrar programa.
+## 17 - Adicionar funcionário.
+
+Deve-se adicionar as informações do funcionário conforme instruído pelo próprio sistema. 
+
+## 18 - Vizualizar todos os funcionários.
+
+Mostra informações de todos os funcionários cadastrados, como nome, cpf, código de identificação e última venda.
+
+## 19 - Demitir funcionário.
+
+Será solicitado o código de identificação do funcionário que, caso encontrado, será demitido.
+
+## 20 - Buscar funcionário.
+
+Será solicitado o código de identificação do funcionário e, caso encontrado, mostrará informações do cadastro, como nome, cpf, código de identificação e última venda.
+
+## 21 - Alterar cadastro.
+
+Possibilita alterações no cadastros de clientes, funcionários ou produtos.
+
+## 22 - Encerrar programa.
