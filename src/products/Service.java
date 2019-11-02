@@ -30,16 +30,16 @@ public class Service implements Product {
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
     public double getPrice() {
-        return this.price;
+        return price;
     }
 
     public double getDiscount() {
-        return this.discount;
+        return discount;
     }
 
     @Override

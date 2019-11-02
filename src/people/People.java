@@ -2,16 +2,32 @@ package people;
 
 public abstract class People {
     protected String name;
-    protected String cpf;
-    protected int age;
+    protected int cpf;
 
-    public People (String name, String cpf, int age) {
+    public People (String name, int cpf) {
         this.name = name;
         this.cpf = cpf;
-        this.age = age;
     }
 
     public People () {
 
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCpf() {
+        return cpf;
+    }
+
 }

@@ -39,21 +39,21 @@ public class Merchandise implements Product {
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
     public double getPrice() {
-        return this.price;
+        return price;
     }
 
     @Override
     public double getDiscount() {
-        return this.discount;
+        return discount;
     }
 
     public double getDelivery() {
-        return this.delivery;
+        return delivery;
     }
 
     @Override
