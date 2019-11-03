@@ -20,6 +20,11 @@ public class Manager extends Employee {
         this.password = password;
     }
 
+    @Override
+    public void setSalary(double salary) {
+        super.setSalary(salary);
+    }
+
     public String getUser() {
         return username;
     }
@@ -28,4 +33,8 @@ public class Manager extends Employee {
         return password;
     }
 
+    @Override
+    public double getSalary() {
+        return super.getSalary();
+    }
 }

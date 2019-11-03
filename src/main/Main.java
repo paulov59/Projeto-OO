@@ -36,16 +36,16 @@ public class Main {
 
         switch (op) {
             case 1:
-                gerenciarCaixa();
+                cashierManagement();
                 break;
             case 2:
-                gerenciarClientes();
+                clientManagement();
                 break;
             case 3:
-                gerenciarFuncionarios();
+                employeeManagement();
                 break;
             case 4:
-                gerenciarEstoque();
+                stockManagement();
                 break;
             default:
                 break;
@@ -53,19 +53,19 @@ public class Main {
         return op;
     }
 
-    private static void gerenciarCaixa() {
+    private static void cashierManagement() {
         System.out.println("Caixa");
     }
 
-    private static void gerenciarClientes() {
+    private static void clientManagement() {
         System.out.println("Clientes");
     }
 
-    private static void gerenciarFuncionarios() {
+    private static void employeeManagement() {
         System.out.println("Funcionários");
     }
 
-    private static void gerenciarEstoque() {
+    private static void stockManagement() {
         System.out.println("Estoque");
     }
 

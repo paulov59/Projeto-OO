@@ -3,6 +3,7 @@ package people;
 public class Employee extends People {
     protected int employeeId;
     protected int workHours;
+    protected double salary;
 
     public Employee (String name, int cpf) {
         super(name, cpf);
@@ -20,6 +21,10 @@ public class Employee extends People {
         this.workHours = workHours;
     }
 
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
@@ -28,4 +33,7 @@ public class Employee extends People {
         return workHours;
     }
 
+    public double getSalary() {
+        return salary;
+    }
 }
