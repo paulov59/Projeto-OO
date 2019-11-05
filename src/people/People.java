@@ -1,6 +1,6 @@
 package people;
 
-public abstract class People {
+public class People {
     protected String name;
     protected int cpf;
 
@@ -20,7 +20,6 @@ public abstract class People {
     public void setCpf(int cpf) {
         this.cpf = cpf;
     }
-
 
     public String getName() {
         return name;

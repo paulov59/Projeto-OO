@@ -38,6 +38,7 @@ public class Service implements Product {
         return price;
     }
 
+    @Override
     public double getDiscount() {
         return discount;
     }

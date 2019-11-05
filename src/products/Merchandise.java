@@ -7,6 +7,12 @@ public class Merchandise implements Product {
     protected double discount;
     protected double delivery;
 
+    public Merchandise(String name, double price, double delivery) {
+        this.name = name;
+        this.price = price;
+        this.delivery = delivery;
+    }
+
     @Override
     public void setName(String name) {
         this.name = name;
@@ -27,6 +33,7 @@ public class Merchandise implements Product {
         this.delivery = delivery;
     }
 
+    @Override
     public void setNewPrice(double increase) {
         this.discount = 0;
         double current = this.price;

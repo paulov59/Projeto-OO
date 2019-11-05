@@ -1,24 +1,33 @@
 package main;
 
+import products.*;
+import people.*;
+
 import java.util.*;
 
 public class Main {
 
-    private static Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
+    public static boolean isOpen = false;
+    public static CashierManagement cashier = new CashierManagement();
+    public static ClientManagement client = new ClientManagement();
+    public static EmployeeManagement employee = new EmployeeManagement();
+    public static StockManagement stock = new StockManagement();
+
 
     public static void main(String[] args) {
         clear();
-        System.out.println("Bem vindo ao Store Manager!\n");
+        System.out.println("Bem vindo ao Store Manager!");
         System.out.println("Pressione < CTRL + C > para sair ou selecione uma das opções no menu...");
-
-        int op = 1;
+        int option = menu();
         do {
-            clear();
-            if (op > 5 || op < 1) {
+
+            if (option > 5 || option < 1) {
                 System.out.println("Opção inválida!");
             }
-            op = menu();
-        } while (op != 5);
+            clear();
+            option = menu();
+        } while (option != 5);
 
         System.out.println("\nObrigado por usar o Store Manager!\n");
 
@@ -26,15 +35,15 @@ public class Main {
 
     public static int menu() {
         System.out.println("Selecione:");
-        System.out.println("\t1 - Gerenciar caixa");
-        System.out.println("\t2 - Gerenciar clientes");
-        System.out.println("\t3 - Gerenciar funcionários");
-        System.out.println("\t4 - Gerenciar estoque");
-        System.out.println("\t5 - Sair");
+        System.out.println("\t[1] - Gerenciar caixa");
+        System.out.println("\t[2] - Gerenciar clientes");
+        System.out.println("\t[3] - Gerenciar funcionários");
+        System.out.println("\t[4] - Gerenciar estoque");
+        System.out.println("\t[5] - Sair");
 
-        int op = input.nextInt();
+        int option = input.nextInt();
 
-        switch (op) {
+        switch (option) {
             case 1:
                 cashierManagement();
                 break;
@@ -50,11 +59,74 @@ public class Main {
             default:
                 break;
         }
-        return op;
+        return option;
     }
 
     private static void cashierManagement() {
-        System.out.println("Caixa");
+        clear();
+        if (isOpen) {
+            System.out.println("Selecione:");
+            System.out.println("\t[1] - Realizar venda");
+            System.out.println("\t[2] - Cancelar venda");
+            System.out.println("\t[3] - Buscar venda");
+            System.out.println("\t[4] - Relatório de vendas");
+            System.out.println("\t[5] - Fechar caixa");
+            System.out.println("\t[6] - Voltar");
+
+            int option = input.nextInt();
+            input.nextLine();
+            clear();
+
+            switch (option) {
+                case 1:
+                    cashier.toSell();
+                    break;
+                case 2:
+                    cashier.cancelSale();
+                    break;
+                case 3:
+                    cashier.findSale();
+                    break;
+                case 4:
+                    cashier.salesReport();
+                    break;
+                case 5:
+                    isOpen = cashier.closeCashier();
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+            System.out.println("Pressioner ENTER para prosseguir.");
+            input.nextLine();
+        } else {
+            System.out.println("Selecione:");
+            System.out.println("\t[1] - Abrir caixa");
+            System.out.println("\t[2] - Relatório de vendas");
+            System.out.println("\t[3] - Voltar");
+
+            int option = input.nextInt();
+            input.nextLine();
+            clear();
+
+            switch (option) {
+                case 1:
+                    isOpen = cashier.openCashier();
+                    break;
+                case 2:
+                    cashier.salesReport();
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+            System.out.println("Pressioner ENTER para prosseguir.");
+            input.nextLine();
+        }
     }
 
     private static void clientManagement() {
@@ -70,7 +142,7 @@ public class Main {
     }
 
     public static void clear() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 150; i++) {
             System.out.println();
         }
     }
