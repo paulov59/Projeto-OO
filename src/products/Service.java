@@ -1,9 +1,21 @@
 package products;
 
 public class Service implements Product {
+    protected int code;
     protected String name;
     protected double price;
     protected double discount;
+
+    public Service(int code, String name, double price) {
+        this.code = code;
+        this.name = name;
+        this.price = price;
+    }
+
+    @Override
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     @Override
     public void setName(String name) {
@@ -29,6 +41,11 @@ public class Service implements Product {
     }
 
     @Override
+    public int getCode() {
+        return code;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
@@ -45,7 +62,7 @@ public class Service implements Product {
 
     @Override
     public String toString() {
-        return this.name + ": R$ " + this.price;
+        return "Código: " + this.code + " - " + this.name + ": R$ " + this.price;
     }
 
 }

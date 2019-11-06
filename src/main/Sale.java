@@ -1,16 +1,16 @@
 package main;
 
+import people.Client;
 import products.*;
 import java.util.*;
 
 public class Sale {
     protected int sale;
-    protected int client;
+    protected Client client;
     protected static float totalPrice;
-    protected static ArrayList<Merchandise> merchandises = new ArrayList<Merchandise>();
-    protected static ArrayList<Service> services = new ArrayList<Service>();
+    protected static ArrayList<Product> products = new ArrayList<Product>();
 
-    public Sale(int sale, int client) {
+    public Sale(int sale, Client client) {
         this.sale = sale;
         this.client = client;
         this.totalPrice = 0;
@@ -20,7 +20,7 @@ public class Sale {
         return sale;
     }
 
-    public int getClient() {
+    public Client getClient() {
         return client;
     }
 
@@ -28,14 +28,9 @@ public class Sale {
         return totalPrice;
     }
 
-    public static void setMerchandises(Merchandise merchandise) {
-        totalPrice += merchandise.getPrice() + merchandise.getDelivery();
-        merchandises.add(merchandise);
-    }
-
-    public static void setServices(Service service) {
-        totalPrice += service.getPrice();
-        services.add(service);
+    public static void setProduct(Product product) {
+        totalPrice += product.getPrice();
+        products.add(product);
     }
 
     @Override

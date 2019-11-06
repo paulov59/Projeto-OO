@@ -1,16 +1,25 @@
 package products;
 
 public class Merchandise implements Product {
+    protected int code;
     protected String name;
-    protected String type;
     protected double price;
     protected double discount;
     protected double delivery;
+    protected int amount;
 
-    public Merchandise(String name, double price, double delivery) {
+    public Merchandise(int code, String name, double price, double delivery, int amount) {
+        this.code = code;
         this.name = name;
         this.price = price;
         this.delivery = delivery;
+        this.amount = amount;
+        this.discount = 0;
+    }
+
+    @Override
+    public void setCode(int code) {
+        this.code = code;
     }
 
     @Override
@@ -33,6 +42,10 @@ public class Merchandise implements Product {
         this.delivery = delivery;
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     @Override
     public void setNewPrice(double increase) {
         this.discount = 0;
@@ -40,8 +53,9 @@ public class Merchandise implements Product {
         this.price = current + (current * increase/100) + (delivery * 0.1);
     }
 
-    public void setType(String type) {
-        this.type = type;
+    @Override
+    public int getCode() {
+        return code;
     }
 
     @Override
@@ -51,7 +65,7 @@ public class Merchandise implements Product {
 
     @Override
     public double getPrice() {
-        return price;
+        return price + delivery;
     }
 
     @Override
@@ -63,9 +77,13 @@ public class Merchandise implements Product {
         return delivery;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     @Override
     public String toString() {
-        return this.name + ": R$ " + this.price + " - Entrega: R$" + this.delivery;
+        return "Código: " + this.code + " - " + this.name + ": R$ " + this.price + " - Entrega: R$ " + this.delivery + " - Quantidade: " + this.amount;
     }
 
 }
