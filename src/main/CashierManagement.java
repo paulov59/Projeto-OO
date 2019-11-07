@@ -76,9 +76,13 @@ public class CashierManagement {
         }else {
             client = null;
         }
+        int nSale = 1;
 
-        int size = 1 + sales.size();
-        Sale sale = new Sale(size, client);
+        if (!sales.isEmpty()) {
+            nSale = 1 + (sales.get(sales.size()-1)).getSale();
+        }
+
+        Sale sale = new Sale(nSale, client);
 
         System.out.print("Digite o código do produto: ");
         int code = input.nextInt();
@@ -91,9 +95,16 @@ public class CashierManagement {
         }
         if (!product.equals(null)) {
             sale.setProduct(product);
+            if( product instanceof Merchandise ) {
+                int amount = ((Merchandise) product).getAmount();
+                products.remove(product);
+                ((Merchandise) product).setAmount(amount-1);
+                products.add(product);
+            }
         } else {
             System.out.println("Produto não encontrado!");
         }
+        input.nextLine();
         while (true) {
             System.out.print("Deseja adicionar mais produtos? (s/n) ");
             option = input.nextLine();
@@ -112,6 +123,12 @@ public class CashierManagement {
                     }
                 }
                 sale.setProduct(product);
+                if( product instanceof Merchandise ) {
+                    int amount = ((Merchandise) product).getAmount();
+                    products.remove(product);
+                    ((Merchandise) product).setAmount(amount-1);
+                    products.add(product);
+                }
             }else {
                 break;
             }
@@ -126,12 +143,43 @@ public class CashierManagement {
 
     }
 
-    public void cancelSale() {
-        System.out.println("Cancelar venda");
+    public void cancelSale(ArrayList<Product> products) {
+        System.out.print("Nota fiscal: ");
+        int nSale = input.nextInt();
+        Sale toCancel = null;
+        for (Sale sale:sales) {
+            if (sale.getSale() == nSale) {
+                toCancel = sale;
+                break;
+            }
+        }
+
+        currentMoney -= toCancel.getPrice();
+        ArrayList<Product> p = toCancel.getProducts();
+        System.out.println(p);
+        sales.remove(toCancel);
+        Product product;
+        for (Product aux: p) {
+            if (aux instanceof Merchandise) {
+                product = aux;
+                int amount = ((Merchandise) product).getAmount();
+                products.remove(product);
+                ((Merchandise) product).setAmount(amount + 1);
+                products.add(product);
+            }
+        }
+
     }
 
     public void findSale() {
-        System.out.println("Buscar venda");
+        System.out.print("Nota fiscal: ");
+        int nSale = input.nextInt();
+        for (Sale sale:sales) {
+           if (sale.getSale() == nSale) {
+               System.out.println(sale);
+               break;
+           }
+        }
     }
 
     public void merchandiseExchange() {

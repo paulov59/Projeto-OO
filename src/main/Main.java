@@ -87,7 +87,7 @@ public class Main {
                     cashier.toSell(products, clients);
                     break;
                 case 2:
-                    cashier.cancelSale();
+                    cashier.cancelSale(products);
                     break;
                 case 3:
                     cashier.findSale();

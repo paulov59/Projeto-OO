@@ -33,10 +33,14 @@ public class Sale {
         products.add(product);
     }
 
+    public static ArrayList<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public String toString() {
         return "\tNota fiscal: " + this.sale
                 + "\n\tCliente: " + this.client
-                + "Total: R$ " + this.totalPrice;
+                + " Total: R$ " + this.totalPrice;
     }
 }
