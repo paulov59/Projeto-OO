@@ -8,7 +8,7 @@ public class Sale {
     protected int sale;
     protected Client client;
     protected static float totalPrice;
-    protected static ArrayList<Product> products = new ArrayList<Product>();
+    protected ArrayList<Product> products = new ArrayList<Product>();
 
     public Sale(int sale, Client client) {
         this.sale = sale;
@@ -28,12 +28,12 @@ public class Sale {
         return totalPrice;
     }
 
-    public static void setProduct(Product product) {
+    public void setProduct(Product product) {
         totalPrice += product.getPrice();
         products.add(product);
     }
 
-    public static ArrayList<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
     }
 
