@@ -22,11 +22,12 @@ public class Main {
     public static void main(String[] args) {
         clear();
         System.out.println("Bem vindo ao Store Manager!");
-        System.out.println("Pressione < CTRL + C > para sair ou selecione uma das opções no menu...");
+        System.out.println("Selecione uma das opções no menu...");
         int option = menu();
         do {
-
-            if (option > 5 || option < 1) {
+            if (option == 5) {
+                break;
+            }else if (option > 5 || option < 1) {
                 System.out.println("Opção inválida!");
             }
             clear();

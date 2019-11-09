@@ -4,7 +4,7 @@ public class Manager extends Employee {
     protected String username;
     protected String password;
 
-    public Manager (String name, int cpf) {
+    public Manager (String name, long cpf) {
         super(name, cpf);
     }
 

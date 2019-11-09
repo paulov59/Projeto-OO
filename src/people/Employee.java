@@ -5,7 +5,7 @@ public class Employee extends People {
     protected int workHours;
     protected double salary;
 
-    public Employee (String name, int cpf) {
+    public Employee (String name, long cpf) {
         super(name, cpf);
     }
 

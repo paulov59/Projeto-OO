@@ -2,6 +2,8 @@ package main;
 
 import people.Client;
 import products.*;
+
+import javax.swing.*;
 import java.util.*;
 
 public class Sale {
@@ -39,8 +41,10 @@ public class Sale {
 
     @Override
     public String toString() {
-        return "\tNota fiscal: " + this.sale
-                + "\n\tCliente: " + this.client
-                + " Total: R$ " + this.totalPrice;
+        if (this.client == null) {
+            return String.format("\tNota fiscal: %d\n\t   Cliente: não identificado\n\t   Total: R$ %.2f", this.sale, this.totalPrice);
+        } else {
+            return String.format("\tNota fiscal: %d\n\t   Cliente: %d\n\t   Total: R$ %.2f", this.sale, this.client.getCpf(), this.totalPrice);
+        }
     }
 }

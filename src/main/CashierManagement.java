@@ -70,9 +70,10 @@ public class CashierManagement {
         }
         if (option.equals("s")) {
             System.out.print("Digite o CPF do cliente: ");
-            int cpf = input.nextInt();
+            long cpf = input.nextLong();
             ClientManagement clientManage = null;
             client = clientManage.findClient(cpf, clients);
+            client.setSales();
         }else {
             client = null;
         }
@@ -93,7 +94,10 @@ public class CashierManagement {
                 break;
             }
         }
-        if (!product.equals(null)) {
+
+        if (product == null) {
+            System.out.println("Produto não encontrado!");
+        } else {
             sale.setProduct(product);
             if( product instanceof Merchandise ) {
                 int amount = ((Merchandise) product).getAmount();
@@ -101,9 +105,8 @@ public class CashierManagement {
                 ((Merchandise) product).setAmount(amount-1);
                 products.add(product);
             }
-        } else {
-            System.out.println("Produto não encontrado!");
         }
+
         input.nextLine();
         while (true) {
             System.out.print("Deseja adicionar mais produtos? (s/n) ");
@@ -137,7 +140,7 @@ public class CashierManagement {
         double finalPrice = sale.getPrice();
         sales.add(sale);
 
-        System.out.println("Total: R$" + finalPrice);
+        System.out.printf("Total: R$ %.2f\n", finalPrice);
 
         currentMoney += finalPrice;
 

@@ -18,7 +18,7 @@ public class ClientManagement {
         System.out.println(clients);
     }
 
-    public Client findClient(int cpf, ArrayList<Client> clients) {
+    public Client findClient(long cpf, ArrayList<Client> clients) {
         for (Client client: clients) {
             if (client.getCpf() == cpf) {
                 return client;
