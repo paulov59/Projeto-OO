@@ -6,6 +6,7 @@ public class Client extends People {
 
     public Client(String name, long cpf) {
         super(name, cpf);
+        this.sales = 0;
     }
 
     public Client() {

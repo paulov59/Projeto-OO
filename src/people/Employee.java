@@ -2,7 +2,6 @@ package people;
 
 public class Employee extends People {
     protected int employeeId;
-    protected int workHours;
     protected double salary;
 
     public Employee (String name, long cpf) {
@@ -17,10 +16,6 @@ public class Employee extends People {
         this.employeeId = employeeId;
     }
 
-    public void setWorkHours(int workHours) {
-        this.workHours = workHours;
-    }
-
     public void setSalary(double salary) {
         this.salary = salary;
     }
@@ -29,11 +24,13 @@ public class Employee extends People {
         return employeeId;
     }
 
-    public int getWorkHours() {
-        return workHours;
-    }
-
     public double getSalary() {
         return salary;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %s\n\tCPF: %d\n\tIdentidade profissional: %d\n\tSalário: R$ %.2f\n",
+                this.name, this, cpf, this.employeeId, this.salary);
     }
 }

@@ -73,7 +73,6 @@ public class StockManagement {
             if (product.getCode() == code) {
                 return product;
             }
-
         }
         return null;
     }

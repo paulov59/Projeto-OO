@@ -42,9 +42,11 @@ public class Sale {
     @Override
     public String toString() {
         if (this.client == null) {
-            return String.format("\tNota fiscal: %d\n\t   Cliente: não identificado\n\t   Total: R$ %.2f", this.sale, this.totalPrice);
+            return String.format("\tNota fiscal: %d\n\t   Cliente: não identificado\n\t   Total: R$ %.2f",
+                    this.sale, this.totalPrice);
         } else {
-            return String.format("\tNota fiscal: %d\n\t   Cliente: %d\n\t   Total: R$ %.2f", this.sale, this.client.getCpf(), this.totalPrice);
+            return String.format("\tNota fiscal: %d\n\t   Cliente: %s\n\t   Total: R$ %.2f",
+                    this.sale, this.client.getName(), this.totalPrice);
         }
     }
 }

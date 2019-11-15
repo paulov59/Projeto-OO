@@ -185,10 +185,6 @@ public class CashierManagement {
         }
     }
 
-    public void merchandiseExchange() {
-        System.out.println("Troca de mercadoria");
-    }
-
     public void salesReport() {
         for (Sale sale:sales) {
             System.out.println(sale);

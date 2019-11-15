@@ -83,7 +83,8 @@ public class Merchandise implements Product {
 
     @Override
     public String toString() {
-        return "Código: " + this.code + " - " + this.name + ": R$ " + this.price + " - Entrega: R$ " + this.delivery + " - Quantidade: " + this.amount;
+        return String.format("Código: %d - %s: R$ %.2f - Entrega: R$ %.2f - Quantidade: %d\n",
+                this.code, this.name, this.price, this.delivery, this.amount);
     }
 
 }

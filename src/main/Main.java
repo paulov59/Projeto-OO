@@ -74,10 +74,9 @@ public class Main {
             System.out.println("\t[1] - Realizar venda");
             System.out.println("\t[2] - Cancelar venda");
             System.out.println("\t[3] - Buscar venda");
-            System.out.println("\t[4] - Trocar mercadoria");
-            System.out.println("\t[5] - Relatório de vendas");
-            System.out.println("\t[6] - Fechar caixa");
-            System.out.println("\t[7] - Voltar");
+            System.out.println("\t[4] - Relatório de vendas");
+            System.out.println("\t[5] - Fechar caixa");
+            System.out.println("\t[6] - Voltar");
 
             int option = input.nextInt();
             input.nextLine();
@@ -94,15 +93,12 @@ public class Main {
                     cashier.findSale();
                     break;
                 case 4:
-                    cashier.merchandiseExchange();
-                    break;
-                case 5:
                     cashier.salesReport();
                     break;
-                case 6:
+                case 5:
                     isOpen = cashier.closeCashier();
                     break;
-                case 7:
+                case 6:
                     return;
                 default:
                     System.out.println("Opção inválida!");
@@ -152,6 +148,7 @@ public class Main {
         input.nextLine();
         clear();
 
+        long cpf;
         Client client;
 
         switch (option) {
@@ -160,21 +157,39 @@ public class Main {
                 clients.add(client);
                 break;
             case 2:
-                client = clientManagement.findClient(10, clients);
-                clients.remove(client);
+                System.out.println("CPF do cliente que será removido: ");
+                cpf = input.nextLong();
+                client = clientManagement.findClient(cpf, clients);
+                if (client == null) {
+                    System.out.println("Cliente não encontrado!");
+                } else {
+                    clients.remove(client);
+                }
                 break;
             case 3:
                 clientManagement.showAllClients(clients);
                 break;
             case 4:
-                client = clientManagement.findClient(10, clients);
-                System.out.println(client);
+                System.out.println("CPF do cliente que será buscado: ");
+                cpf = input.nextLong();
+                client = clientManagement.findClient(cpf, clients);
+                if (client == null) {
+                    System.out.println("Cliente não encontrado!");
+                } else {
+                    System.out.println(client);
+                }
                 break;
             case 5:
-                Client aux = clientManagement.findClient(10, clients);
-                client = clientManagement.changeClient(aux);
-                clients.remove(aux);
-                clients.add(client);
+                System.out.println("CPF do cliente que terá o cadastro alterado: ");
+                cpf = input.nextLong();
+                Client aux = clientManagement.findClient(cpf, clients);
+                if (aux == null) {
+                    System.out.println("Cliente não encontrado!");
+                } else {
+                    client = clientManagement.changeClient(aux);
+                    clients.remove(aux);
+                    clients.add(client);
+                }
                 break;
             case 6:
                 return;
@@ -200,6 +215,7 @@ public class Main {
         input.nextLine();
         clear();
 
+        long cpf;
         Employee employee;
 
         switch (option) {
@@ -208,21 +224,39 @@ public class Main {
                 employees.add(employee);
                 break;
             case 2:
-                employee = employeeManagement.findEmployee(10, employees);
-                employees.remove(employee);
+                System.out.println("CPF do funcionário que será removido: ");
+                cpf = input.nextLong();
+                employee = employeeManagement.findEmployee(cpf, employees);
+                if (employee == null) {
+                    System.out.println("Funcionário não encontrado!");
+                } else {
+                    employees.remove(employee);
+                }
                 break;
             case 3:
                 employeeManagement.showAllEmployees(employees);
                 break;
             case 4:
-                employee = employeeManagement.findEmployee(10, employees);
-                System.out.println(employee);
+                System.out.println("CPF do funcionário que será buscado: ");
+                cpf = input.nextLong();
+                employee = employeeManagement.findEmployee(cpf, employees);
+                if (employee == null) {
+                    System.out.println("Funcionário não encontrado!");
+                } else {
+                    System.out.println(employee);
+                }
                 break;
             case 5:
-                Employee aux = employeeManagement.findEmployee(10, employees);
-                employee = employeeManagement.changeEmployee(aux);
-                employees.remove(aux);
-                employees.add(employee);
+                System.out.println("CPF do funcionário que terá o cadastro alterado: ");
+                cpf = input.nextLong();
+                Employee aux = employeeManagement.findEmployee(cpf, employees);
+                if (aux == null) {
+                    System.out.println("Funcionário não encontrado!");
+                } else {
+                    employee = employeeManagement.changeEmployee(aux);
+                    employees.remove(aux);
+                    employees.add(employee);
+                }
                 break;
             case 6:
                 return;
