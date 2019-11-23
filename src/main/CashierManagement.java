@@ -31,8 +31,19 @@ public class CashierManagement {
             password = input.nextLine();
         }
 
-        System.out.print("Valor inicial do caixa: R$ ");
-        currentMoney = input.nextDouble();
+        boolean flag = false;
+        while (!flag) {
+            try {
+                currentMoney = 0;
+                flag = true;
+                System.out.print("Valor inicial do caixa: R$ ");
+                currentMoney = input.nextDouble();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um valor válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
         input.nextLine();
 
         return true;
@@ -63,12 +74,12 @@ public class CashierManagement {
         Client client;
         System.out.print("Identificar o cliente? (s/n) ");
         String option = input.nextLine();
-        while (!option.equals("s") && !option.equals("n")) {
+        while (!option.equals("s") && !option.equals("n") && !option.equals("S") && !option.equals("N")) {
             System.out.println("Opção Inválida!");
             System.out.print("Identificar o cliente? (s/n) ");
             option = input.nextLine();
         }
-        if (option.equals("s")) {
+        if (option.equals("s") || option.equals("S")) {
             System.out.print("Digite o CPF do cliente: ");
             long cpf = input.nextLong();
             ClientManagement clientManage = null;
@@ -86,7 +97,23 @@ public class CashierManagement {
         Sale sale = new Sale(nSale, client);
 
         System.out.print("Digite o código do produto: ");
-        int code = input.nextInt();
+        int code = 0;
+
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                code = 0;
+                flag = true;
+                System.out.print("Digite o código do produto: ");
+                code = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um código válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
+
         Product product = null;
         for (Product aux: products) {
             if (aux.getCode() == code) {
@@ -111,14 +138,27 @@ public class CashierManagement {
         while (true) {
             System.out.print("Deseja adicionar mais produtos? (s/n) ");
             option = input.nextLine();
-            while (!option.equals("s") && !option.equals("n")) {
+            while (!option.equals("s") && !option.equals("n") && !option.equals("S") && !option.equals("N")) {
                 System.out.println("Opção Inválida!");
                 System.out.print("Deseja adicionar mais produtos? (s/n) ");
                 option = input.nextLine();
             }
-            if (option.equals("s")) {
+            if (option.equals("s") || option.equals("S")) {
                 System.out.print("Digite o código do produto: ");
-                code = input.nextInt();
+
+                while (!flag) {
+                    try {
+                        code = 0;
+                        flag = true;
+                        System.out.print("Digite o código do produto: ");
+                        code = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um código válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
+
                 for (Product aux: products) {
                     if (aux.getCode() == code) {
                         product = aux;
@@ -132,7 +172,7 @@ public class CashierManagement {
                     ((Merchandise) product).setAmount(amount-1);
                     products.add(product);
                 }
-            }else {
+            } else {
                 break;
             }
         }
@@ -148,7 +188,23 @@ public class CashierManagement {
 
     public void cancelSale(ArrayList<Product> products) {
         System.out.print("Nota fiscal: ");
-        int nSale = input.nextInt();
+
+        int nSale = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                nSale = 0;
+                flag = true;
+                System.out.print("Nota fiscal: ");
+                nSale = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um código válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
+
         Sale toCancel = null;
         for (Sale sale:sales) {
             if (sale.getSale() == nSale) {
@@ -159,7 +215,6 @@ public class CashierManagement {
 
         currentMoney -= toCancel.getPrice();
         ArrayList<Product> p = toCancel.getProducts();
-        System.out.println(p);
         sales.remove(toCancel);
         Product product;
         for (Product aux: p) {
@@ -175,8 +230,22 @@ public class CashierManagement {
     }
 
     public void findSale() {
-        System.out.print("Nota fiscal: ");
-        int nSale = input.nextInt();
+        int nSale = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                nSale = 0;
+                flag = true;
+                System.out.print("Nota fiscal: ");
+                nSale = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um código válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
+
         for (Sale sale:sales) {
            if (sale.getSale() == nSale) {
                System.out.println(sale);

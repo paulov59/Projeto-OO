@@ -4,19 +4,20 @@ import products.*;
 import people.*;
 
 import java.util.*;
+import java.lang.*;
 
 public class Main {
 
-    public static Scanner input = new Scanner(System.in);
-    public static boolean isOpen = false;
-    public static CashierManagement cashier = new CashierManagement();
-    public static ClientManagement clientManagement = new ClientManagement();
-    public static EmployeeManagement employeeManagement = new EmployeeManagement();
-    public static StockManagement stock = new StockManagement();
+    private static Scanner input = new Scanner(System.in);
+    private static boolean isOpen = false;
+    private static CashierManagement cashier = new CashierManagement();
+    private static ClientManagement clientManagement = new ClientManagement();
+    private static EmployeeManagement employeeManagement = new EmployeeManagement();
+    private static StockManagement stock = new StockManagement();
 
-    public static ArrayList<Product> products = new ArrayList<Product>();
-    public static ArrayList<Client> clients = new ArrayList<Client>();
-    public static ArrayList<Employee> employees = new ArrayList<Employee>();
+    private static ArrayList<Product> products = new ArrayList<>();
+    private static ArrayList<Client> clients = new ArrayList<>();
+    private static ArrayList<Employee> employees = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -27,8 +28,6 @@ public class Main {
         do {
             if (option == 5) {
                 break;
-            }else if (option > 5 || option < 1) {
-                System.out.println("Opção inválida!");
             }
             clear();
             option = menu();
@@ -38,7 +37,7 @@ public class Main {
 
     }
 
-    public static int menu() {
+    private static int menu() {
         System.out.println("Selecione:");
         System.out.println("\t[1] - Gerenciar caixa");
         System.out.println("\t[2] - Gerenciar clientes");
@@ -46,7 +45,23 @@ public class Main {
         System.out.println("\t[4] - Gerenciar estoque");
         System.out.println("\t[5] - Sair");
 
-        int option = input.nextInt();
+        int option = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                option = 0;
+                flag = true;
+                option = input.nextInt();
+                if (option < 1 || option > 5) {
+                    throw new Exception("Opção inválida!");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, insira uma opção válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
 
         switch (option) {
             case 1:
@@ -78,8 +93,23 @@ public class Main {
             System.out.println("\t[5] - Fechar caixa");
             System.out.println("\t[6] - Voltar");
 
-            int option = input.nextInt();
-            input.nextLine();
+            int option = 0;
+            boolean flag = false;
+
+            while (!flag) {
+                try {
+                    option = 0;
+                    flag = true;
+                    option = input.nextInt();
+                    if (option < 1 || option > 6) {
+                        throw new Exception("Opção inválida!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Por favor, insira uma opção válida");
+                    input.nextLine();
+                    flag = false;
+                }
+            }
             clear();
 
             switch (option) {
@@ -100,9 +130,6 @@ public class Main {
                     break;
                 case 6:
                     return;
-                default:
-                    System.out.println("Opção inválida!");
-                    break;
             }
             System.out.println("Pressioner ENTER para prosseguir.");
             input.nextLine();
@@ -112,8 +139,23 @@ public class Main {
             System.out.println("\t[2] - Relatório de vendas");
             System.out.println("\t[3] - Voltar");
 
-            int option = input.nextInt();
-            input.nextLine();
+            int option = 0;
+            boolean flag = false;
+
+            while (!flag) {
+                try {
+                    option = 0;
+                    flag = true;
+                    option = input.nextInt();
+                    if (option < 1 || option > 5) {
+                        throw new Exception("Opção inválida!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Por favor, insira uma opção válida");
+                    input.nextLine();
+                    flag = false;
+                }
+            }
             clear();
 
             switch (option) {
@@ -124,9 +166,6 @@ public class Main {
                     cashier.salesReport();
                     break;
                 case 3:
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
                     break;
             }
             System.out.println("Pressioner ENTER para prosseguir.");
@@ -144,11 +183,27 @@ public class Main {
         System.out.println("\t[5] - Alterar cadastro de cliente");
         System.out.println("\t[6] - Voltar");
 
-        int option = input.nextInt();
-        input.nextLine();
+        int option = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                option = 0;
+                flag = true;
+                option = input.nextInt();
+                if (option < 1 || option > 6) {
+                    throw new Exception("Opção inválida!");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, insira uma opção válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
+
         clear();
 
-        long cpf;
+        long cpf = 0;
         Client client;
 
         switch (option) {
@@ -158,7 +213,18 @@ public class Main {
                 break;
             case 2:
                 System.out.println("CPF do cliente que será removido: ");
-                cpf = input.nextLong();
+                flag = false;
+                while (!flag) {
+                    try {
+                        cpf = 0;
+                        flag = true;
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 client = clientManagement.findClient(cpf, clients);
                 if (client == null) {
                     System.out.println("Cliente não encontrado!");
@@ -171,7 +237,18 @@ public class Main {
                 break;
             case 4:
                 System.out.println("CPF do cliente que será buscado: ");
-                cpf = input.nextLong();
+                flag = false;
+                while (!flag) {
+                    try {
+                        cpf = 0;
+                        flag = true;
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 client = clientManagement.findClient(cpf, clients);
                 if (client == null) {
                     System.out.println("Cliente não encontrado!");
@@ -181,7 +258,18 @@ public class Main {
                 break;
             case 5:
                 System.out.println("CPF do cliente que terá o cadastro alterado: ");
-                cpf = input.nextLong();
+                flag = false;
+                while (!flag) {
+                    try {
+                        cpf = 0;
+                        flag = true;
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 Client aux = clientManagement.findClient(cpf, clients);
                 if (aux == null) {
                     System.out.println("Cliente não encontrado!");
@@ -193,9 +281,6 @@ public class Main {
                 break;
             case 6:
                 return;
-            default:
-                System.out.println("Opção inválida!");
-                break;
         }
         System.out.println("Pressioner ENTER para prosseguir.");
         input.nextLine();
@@ -211,11 +296,26 @@ public class Main {
         System.out.println("\t[5] - Alterar cadastro de funcionário");
         System.out.println("\t[6] - Voltar");
 
-        int option = input.nextInt();
-        input.nextLine();
+        int option = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                option = 0;
+                flag = true;
+                option = input.nextInt();
+                if (option < 1 || option > 6) {
+                    throw new Exception("Opção inválida!");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, insira uma opção válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
         clear();
 
-        long cpf;
+        long cpf = 0;
         Employee employee;
 
         switch (option) {
@@ -225,7 +325,18 @@ public class Main {
                 break;
             case 2:
                 System.out.println("CPF do funcionário que será removido: ");
-                cpf = input.nextLong();
+                flag = false;
+                while (!flag) {
+                    try {
+                        cpf = 0;
+                        flag = true;
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 employee = employeeManagement.findEmployee(cpf, employees);
                 if (employee == null) {
                     System.out.println("Funcionário não encontrado!");
@@ -238,7 +349,18 @@ public class Main {
                 break;
             case 4:
                 System.out.println("CPF do funcionário que será buscado: ");
-                cpf = input.nextLong();
+                flag = false;
+                while (!flag) {
+                    try {
+                        cpf = 0;
+                        flag = true;
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 employee = employeeManagement.findEmployee(cpf, employees);
                 if (employee == null) {
                     System.out.println("Funcionário não encontrado!");
@@ -248,7 +370,18 @@ public class Main {
                 break;
             case 5:
                 System.out.println("CPF do funcionário que terá o cadastro alterado: ");
-                cpf = input.nextLong();
+                flag = false;
+                while (!flag) {
+                    try {
+                        cpf = 0;
+                        flag = true;
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 Employee aux = employeeManagement.findEmployee(cpf, employees);
                 if (aux == null) {
                     System.out.println("Funcionário não encontrado!");
@@ -260,9 +393,6 @@ public class Main {
                 break;
             case 6:
                 return;
-            default:
-                System.out.println("Opção inválida!");
-                break;
         }
         System.out.println("Pressioner ENTER para prosseguir.");
         input.nextLine();
@@ -278,12 +408,27 @@ public class Main {
         System.out.println("\t[5] - Alterar produto");
         System.out.println("\t[6] - Voltar");
 
-        int option = input.nextInt();
-        input.nextLine();
+        int option = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                option = 0;
+                flag = true;
+                option = input.nextInt();
+                if (option < 1 || option > 6) {
+                    throw new Exception("Opção inválida!");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, insira uma opção válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
         clear();
 
         Product product;
-        int code;
+        int code = 0;
 
         switch (option) {
             case 1:
@@ -292,7 +437,18 @@ public class Main {
                 break;
             case 2:
                 System.out.print("Insira o código do produto: ");
-                code = input.nextInt();
+                flag = false;
+                while (!flag) {
+                    try {
+                        code = 0;
+                        flag = true;
+                        code = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um código válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 product = stock.findProduct(code, products);
                 if (product == null) {
                     System.out.println("Produto não encontrado!");
@@ -306,7 +462,18 @@ public class Main {
                 break;
             case 4:
                 System.out.print("Insira o código do produto: ");
-                code = input.nextInt();
+                flag = false;
+                while (!flag) {
+                    try {
+                        code = 0;
+                        flag = true;
+                        code = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um código válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 product = stock.findProduct(code, products);
                 if (product == null) {
                     System.out.println("Produto não encontrado!");
@@ -316,7 +483,18 @@ public class Main {
                 break;
             case 5:
                 System.out.print("Insira o código do produto: ");
-                code = input.nextInt();
+                flag = false;
+                while (!flag) {
+                    try {
+                        code = 0;
+                        flag = true;
+                        code = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um código válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 Product aux = stock.findProduct(code, products);
                 if (aux == null) {
                     System.out.println("Produto não encontrado!");
@@ -328,15 +506,12 @@ public class Main {
                 break;
             case 6:
                 return;
-            default:
-                System.out.println("Opção inválida!");
-                break;
         }
         System.out.println("Pressioner ENTER para prosseguir.");
         input.nextLine();
     }
 
-    public static void clear() {
+    private static void clear() {
         for (int i = 0; i < 150; i++) {
             System.out.println();
         }
