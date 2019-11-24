@@ -8,19 +8,54 @@ public class EmployeeManagement {
     public Scanner input = new Scanner(System.in);
 
     public Employee addEmployee() {
+        int employeeId = 0;
+        long cpf = 0;
+        double salary = 0;
+        boolean flag;
+
         System.out.print("Nome: ");
         String name = input.nextLine();
 
-        System.out.print("CPF: ");
-        long cpf = input.nextLong();
+        flag = false;
+        while (!flag) {
+            try {
+                flag = true;
+                System.out.print("CPF: ");
+                cpf = input.nextLong();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um CPF válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
         Employee employee = new Employee(name, cpf);
 
-        System.out.print("Número de identidade profissional: ");
-        int employeeId = input.nextInt();
+        flag = false;
+        while (!flag) {
+            try {
+                flag = true;
+                System.out.print("Número de identidade profissional: ");
+                employeeId = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira uma identidade profissional válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
         employee.setEmployeeId(employeeId);
 
-        System.out.println("Salário: R$ ");
-        double salary = input.nextDouble();
+        flag = false;
+        while (!flag) {
+            try {
+                flag = true;
+                System.out.println("Salário: R$ ");
+                salary = input.nextDouble();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um valor válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
         employee.setSalary(salary);
 
         return employee;
@@ -54,8 +89,21 @@ public class EmployeeManagement {
         System.out.println("\t[3] - Modificar identidade profissional");
         System.out.println("\t[4] - Voltar");
 
-        int option = input.nextInt();
-        input.nextLine();
+        int option = 0;
+        boolean flag = false;
+        while (!flag) {
+            try {
+                flag = true;
+                option = input.nextInt();
+                if (option < 1 || option > 4) {
+                    throw new Exception("Opção inválida");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, selecione uma opção válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
 
         switch (option) {
             case 1:
@@ -64,13 +112,35 @@ public class EmployeeManagement {
                 employee.setName(name);
                 break;
             case 2:
-                System.out.println("Novo salário: R$ ");
-                double salary = input.nextDouble();
+                double salary = 0;
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.println("Novo salário: R$ ");
+                        salary = input.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um valor válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 employee.setSalary(salary);
                 break;
             case 3:
-                System.out.println("Nova identidade profissional: ");
-                int employeeId = input.nextInt();
+                int employeeId = 0;
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.println("Nova identidade profissional: ");
+                        employeeId = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira uma identidade profissional válida");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
                 employee.setEmployeeId(employeeId);
                 break;
             default:

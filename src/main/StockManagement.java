@@ -8,51 +8,125 @@ public class StockManagement {
     Scanner input = new Scanner(System.in);
 
     public Product addProduct() {
+        int option = 0;
+        boolean flag;
+
         System.out.println("Selecione:");
         System.out.println("\t[1] - Adicionar mercadoria");
         System.out.println("\t[2] - Adicionar serviço");
 
-        int option = input.nextInt();
-        input.nextLine();
+        flag = false;
+        while (!flag) {
+            try {
+                flag = true;
+                option = input.nextInt();
+                if (option < 1 || option > 2) {
+                    throw new Exception("Opção inválida");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, selecione uma opção válida");
+                input.nextLine();
+                flag = false;
+            }
+        }
+
         Product product = null;
 
-        int code, amount;
-        double price, delivery;
+        int code = 0, amount = 0;
+        double price = 0, delivery = 0;
         String name;
 
         switch (option) {
             case 1:
-                System.out.print("Insira o código do produto: ");
-                code = input.nextInt();
-                input.nextLine();
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Insira o código do produto: ");
+                        code = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um código válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
 
                 System.out.print("Insira o nome do produto: ");
                 name = input.nextLine();
 
-                System.out.print("Insira o preço do produto: R$ ");
-                price = input.nextDouble();
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Insira o preço do produto: R$ ");
+                        price = input.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um valor válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
 
-                System.out.print("Insira o frete do produto: R$ ");
-                delivery = input.nextDouble();
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Insira o frete do produto: R$ ");
+                        delivery = input.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um valor válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
 
-                System.out.print("Insira a quantidade da mercadoria: ");
-                amount = input.nextInt();
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Insira a quantidade da mercadoria: ");
+                        amount = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira uma quantidade válida");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
 
-                product = new Merchandise(code,name, price, delivery, amount);
+                product = new Merchandise(code, name, price, delivery, amount);
                 break;
 
             case 2:
-                System.out.print("Insira o código do serviço: ");
-                code = input.nextInt();
-                input.nextLine();
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Insira o código do serviço: ");
+                        code = input.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um código válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
 
                 System.out.print("Insira o nome do serviço: ");
                 name = input.nextLine();
 
-                System.out.print("Insira o preço do serviço: R$ ");
-                price = input.nextDouble();
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Insira o preço do serviço: R$ ");
+                        price = input.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um valor válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                }
 
-                product = new Service(code,name, price);
+                product = new Service(code, name, price);
                 break;
         }
 
