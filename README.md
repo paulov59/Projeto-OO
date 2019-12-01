@@ -7,88 +7,67 @@ O sistema inicia com um menu onde o usuário poderá escolher entre as opções 
 
 ## Funcionalidades do Sistema
 
-## 1 - Adicionar produto ao estoque.
+#### 1 - Abrir caixa
+Será solicitado nome de usuário (admin), senha (admin) e o valor inicial do caixa. Após a abertura, o sistema poderá realizar vendas e cancelamentos.
 
-Deve-se adicionar as informações do produto conforme instruído pelo próprio sistema. 
+#### 2 - Fechar caixa
+Será solicitado nome de usuário (admin) e senha (admin). Após o fechamento, o sistema informará a quantidade de vendas e o total arrecadado.
 
-## 2 - Remover produto do estoque.
+#### 3 - Realizar venda
+Será solicitada a identificação do cliente e os códigos dos produtos.
 
-Será solicitado o código do produto que, caso encontrado, será removido.
+#### 4 - Cancelar venda
+Será solicitado o número da nota fiscal que, caso encontrado, será cancelada, restaurando a quantidade de produtos no estoque e o valor em caixa.
 
-## 3 - Vizualizar produtos.
-
-Mostra informações de todos os produtos cadastrados, como quantidade, código e preço.
-
-## 4 - Buscar produto.
-
-Será solicitado o códido do produto e, caso encontrado, mostrará informações do cadastro, como quantidade, código e preço.
-
-## 5 - Realizar venda.
-
-Será solicitada a identificação do cliente, do funcionário responsável pela venda e os códigos dos produtos e a forma de pagamento para realização da venda. Será informado o número da nota fiscal referente a venda.
-
-## 6 - Cancelamento de venda.
-
-Será solicitado o número da nota fiscal que, caso encontrado, será cancelada a venda, restaurando a quantidade de produtos no estoque e o valor em caixa.
-
-## 7 - Vizualizar todas as vendas.
-
-Mostra informações de todos as vendas realizadas, como nome do cliente, número da nota fiscal, valor e forma de pagamento.
-
-## 8 - Buscar venda.
-
+#### 5 - Buscar venda
 Será solicitado o número da nota fiscal e, caso encontrada, mostrará informações da transação referida pela nota.
 
-## 9 - Troca de mercadoria.
+#### 6 - Relatório de vendas
+Mostra informações de todos as vendas realizadas, como nome do cliente, número da nota fiscal, valor total.
 
-Será solicitado o número da nota fiscal e, caso encontrada, o cliente poderá trocar as mercadorias por novos produtos.
+#### 7 - Adicionar produto
+Deve-se adicionar as informações do produto conforme solicitado pelo próprio sistema.
 
-## 10 - Abertura de caixa.
+#### 8 - Remover produto
+Será solicitado o código do produto que, caso encontrado, será removido.
 
-Será solicitado nome de usuário (admin), senha (admin) e o valor inicial do caixa. Após a abertura, o sistema poderá realizar transações financeiras, como vendas, cancelamentos e trocas.
+#### 9 - Visualizar todos os produtos
+Mostrará informações de todos os produtos cadastrados, como quantidade, código e preço.
 
-## 11 - Fechamento de caixa.
+#### 10 - Buscar produto
+Será solicitado o códido do produto e, caso encontrado, mostrará informações como nome, quantidade, código e preço.
 
-Será solicitado nome de usuário (admin) e senha (admin). Após o fechamento, o sistema informará a quantidade de vendas, de produtos comercializados e o total arrecadado.
+#### 11 - Alterar produto
+Será solicitado o códido do produto e, caso encontrado, poderá alterar informações do cadastro, como nome, quantidade e preço.
 
-## 12 - Buscar nota.
+#### 12 - Adicionar funcionário
+Deve-se adicionar as informações do funcionário conforme solicitado pelo próprio sistema.
 
-Será solicitado o número da nota fiscal e, caso encontrada, mostrará informações da referida nota.
+#### 13 - Remover funcionário
+Será solicitado o CPF do funcionário que, caso encontrado, será removido.
 
-## 13 - Adicionar cliente.
+#### 14 - Visualizar todos os funcionários
+Mostra informações de todos os funcionários cadastrados, como nome, cpf e salário.
 
-Deve-se adicionar as informações do cliente conforme instruído pelo próprio sistema. 
+#### 15 - Buscar funcionário
+Será solicitado o CPF do funcionário e, caso encontrado, mostrará informações como nome, cpf, código de identificação e salário.
 
-## 14 - Vizualizar todos os clientes.
+#### 16 - Alterar cadastro de funcionário
+Será solicitado o CPF do funcionário e, caso encontrado, poderá alterar informações do cadastro, como nome e salário.
 
-Mostra informações de todos os clientes cadastrados, como nome, cpf e última compra.
+#### 17 - Adicionar cliente
+Deve-se adicionar as informações do cliente conforme solicitado pelo próprio sistema.
 
-## 15 - Excluir cliente.
-
+#### 18 - Remover cliente
 Será solicitado o CPF do cliente que, caso encontrado, será removido.
 
-## 16 - Buscar cliente.
+#### 19 - Visualizar todos os clientes
+Mostra informações de todos os clientes cadastrados, como nome e cpf.
 
-Será solicitado o CPF do cliente e, caso encontrado, mostrará informações do cadastro, como nome, cpf e última compra.
+#### 20 - Buscar cliente
+Será solicitado o CPF do cliente e, caso encontrado, mostrará informações como nome e cpf.
 
-## 17 - Adicionar funcionário.
+#### 21 - Alterar cadastro de cliente
+Será solicitado o CPF do cliente e, caso encontrado, poderá alterar informações do cadastro, como nome e endereço.
 
-Deve-se adicionar as informações do funcionário conforme instruído pelo próprio sistema. 
-
-## 18 - Vizualizar todos os funcionários.
-
-Mostra informações de todos os funcionários cadastrados, como nome, cpf, código de identificação e última venda.
-
-## 19 - Demitir funcionário.
-
-Será solicitado o código de identificação do funcionário que, caso encontrado, será demitido.
-
-## 20 - Buscar funcionário.
-
-Será solicitado o código de identificação do funcionário e, caso encontrado, mostrará informações do cadastro, como nome, cpf, código de identificação e última venda.
-
-## 21 - Alterar cadastro.
-
-Possibilita alterações no cadastros de clientes, funcionários ou produtos.
-
-## 22 - Encerrar programa.
+#### 22 - Encerrar programa
