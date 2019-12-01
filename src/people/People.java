@@ -2,9 +2,9 @@ package people;
 
 public class People {
     protected String name;
-    protected long cpf;
+    protected String cpf;
 
-    public People (String name, long cpf) {
+    public People (String name, String cpf) {
         this.name = name;
         this.cpf = cpf;
     }
@@ -17,15 +17,11 @@ public class People {
         this.name = name;
     }
 
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
-    }
-
     public String getName() {
         return name;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 

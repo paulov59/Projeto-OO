@@ -8,25 +8,30 @@ public class ClientManagement {
 
     private Scanner input = new Scanner(System.in);
 
+    public boolean validateCpf(String cpf) {
+        return cpf.matches("[0-9]*");
+    }
+
     public Client addClient() {
         System.out.print("Nome: ");
         String name = input.nextLine();
 
-        long cpf = 0;
+        String cpf = null;
         boolean flag = false;
 
         while (!flag) {
             try {
                 flag = true;
                 System.out.print("CPF: ");
-                cpf = input.nextLong();
+                cpf = input.nextLine();
+                if (!validateCpf(cpf) || cpf.length() != 11) {
+                    throw new Exception();
+                }
             } catch (Exception e) {
                 System.out.println("Por favor, insira um CPF válido");
-                input.nextLine();
                 flag = false;
             }
         }
-        input.nextLine();
 
         Client client = new Client(name, cpf);
 
@@ -47,10 +52,10 @@ public class ClientManagement {
         }
     }
 
-    public Client findClient(long cpf, ArrayList<Client> clients) {
+    public Client findClient(String cpf, ArrayList<Client> clients) {
         if (!clients.isEmpty()) {
             for (Client client: clients) {
-                if (client.getCpf() == cpf) {
+                if (client.getCpf().equals(cpf)) {
                     return client;
                 }
             }

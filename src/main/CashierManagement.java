@@ -8,12 +8,16 @@ import java.util.*;
 
 public class CashierManagement {
 
-    ArrayList<Sale> sales = new ArrayList<Sale>();
-    Scanner input = new Scanner(System.in);
-    double currentMoney;
+    private ArrayList<Sale> sales = new ArrayList<Sale>();
+    private Scanner input = new Scanner(System.in);
+    private double currentMoney = 0;
+
+    public boolean validateCpf(String cpf) {
+        return cpf.matches("[0-9]*");
+    }
 
     public CashierManagement() {
-        this.currentMoney = 0;
+
     }
 
     public boolean openCashier() {
@@ -72,9 +76,10 @@ public class CashierManagement {
         return false;
     }
 
-    public void toSell(ArrayList<Product> products, ArrayList<Client> clients) {
+    public void toSell(ArrayList<Product> products, ArrayList<Client> clients, ArrayList<Employee> employees) {
         String option;
         boolean flag;
+        Employee employee = null;
         Client client = null;
 
         if (products.isEmpty()) {
@@ -93,16 +98,18 @@ public class CashierManagement {
             }
 
             if (option.equals("s") || option.equals("S")) {
-                long cpf = 0;
+                String cpf = null;
                 flag = false;
                 while (!flag) {
                     try {
                         flag = true;
                         System.out.print("Digite o CPF do cliente: ");
-                        cpf = input.nextLong();
+                        cpf = input.nextLine();
+                        if (!validateCpf(cpf) || cpf.length() != 11) {
+                            throw new Exception();
+                        }
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um CPF válido");
-                        input.nextLine();
                         flag = false;
                     }
                     ClientManagement clientManage = new ClientManagement();
@@ -116,13 +123,40 @@ public class CashierManagement {
                 }
             }
         }
+
+        if (!employees.isEmpty()) {
+            String cpf = null;
+            flag = false;
+            while (!flag) {
+                try {
+                    flag = true;
+                    System.out.print("CPF do vendedor: ");
+                    cpf = input.nextLine();
+                    if (!validateCpf(cpf) || cpf.length() != 11) {
+                        throw new Exception();
+                    }
+                } catch (Exception e) {
+                    System.out.println("Por favor, insira um CPF válido");
+                    flag = false;
+                }
+                EmployeeManagement employeeManage = new EmployeeManagement();
+                employee = employeeManage.findEmployee(cpf, employees);
+                if (employee != null) {
+                    employee.setSales();
+                } else {
+                    System.out.println("Vendedor não encontrado!");
+                    flag = false;
+                }
+            }
+        }
+
         int nSale = 1;
 
         if (!sales.isEmpty()) {
             nSale = 1 + (sales.get(sales.size()-1)).getSale();
         }
 
-        Sale sale = new Sale(nSale, client);
+        Sale sale = new Sale(nSale, client, employee);
 
         int code = 0;
         flag = false;
@@ -255,6 +289,8 @@ public class CashierManagement {
                     products.add(product);
                 }
             }
+            toCancel.employee.removeSale();
+            toCancel.client.removeSale();
             System.out.println("Venda cancelada");
         } else {
             System.out.println("Venda não encontrada");

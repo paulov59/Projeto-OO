@@ -98,6 +98,7 @@ public class StockManagement {
                 input.nextLine();
 
                 product = new Merchandise(code, name, price, delivery, amount);
+                System.out.println("Produto adicionado");
                 break;
 
             case 2:
@@ -133,11 +134,13 @@ public class StockManagement {
                 input.nextLine();
 
                 product = new Service(code, name, price);
+                System.out.println("Produto adicionado.");
                 break;
 
             case 3:
                 break;
         }
+
         return product;
     }
 

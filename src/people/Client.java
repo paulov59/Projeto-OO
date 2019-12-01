@@ -4,13 +4,9 @@ public class Client extends People {
     protected int sales;
     protected String address;
 
-    public Client(String name, long cpf) {
+    public Client(String name, String cpf) {
         super(name, cpf);
         this.sales = 0;
-    }
-
-    public Client() {
-
     }
 
     public void setSales() {
@@ -19,6 +15,10 @@ public class Client extends People {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void removeSale(){
+        this.sales--;
     }
 
     public int getSales() {
@@ -31,7 +31,7 @@ public class Client extends People {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s\n\tCPF: %d\n\tEndereço: %s\n\tCompras realizadas: %d\n",
+        return String.format("Nome: %s\n\tCPF: %s\n\tEndereço: %s\n\tCompras realizadas: %d\n",
                 this.name, this.cpf, this.address, this.sales);
     }
 }

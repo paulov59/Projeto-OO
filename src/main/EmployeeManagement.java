@@ -7,9 +7,13 @@ public class EmployeeManagement {
 
     public Scanner input = new Scanner(System.in);
 
+    public boolean validateCpf(String cpf) {
+        return cpf.matches("[0-9]*");
+    }
+
     public Employee addEmployee() {
         int employeeId = 0;
-        long cpf = 0;
+        String cpf = null;
         double salary = 0;
         boolean flag;
 
@@ -21,14 +25,15 @@ public class EmployeeManagement {
             try {
                 flag = true;
                 System.out.print("CPF: ");
-                cpf = input.nextLong();
+                cpf = input.nextLine();
+                if (!validateCpf(cpf) || cpf.length() != 11) {
+                    throw new Exception();
+                }
             } catch (Exception e) {
                 System.out.println("Por favor, insira um CPF válido");
-                input.nextLine();
                 flag = false;
             }
         }
-        input.nextLine();
         Employee employee = new Employee(name, cpf);
 
         flag = false;
@@ -74,10 +79,10 @@ public class EmployeeManagement {
         }
     }
 
-    public Employee findEmployee(long cpf, ArrayList<Employee> employees) {
+    public Employee findEmployee(String cpf, ArrayList<Employee> employees) {
         if (!employees.isEmpty()) {
             for (Employee employee: employees) {
-                if (employee.getCpf() == cpf) {
+                if (employee.getCpf().equals(cpf)) {
                     return employee;
                 }
             }
