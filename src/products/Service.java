@@ -62,7 +62,7 @@ public class Service implements Product {
 
     @Override
     public String toString() {
-        return String.format("Código: %d - %s: R$ %.2f\n",
+        return String.format("Serviço:\n\tCódigo: %d - %s: R$ %.2f\n",
                 this.code, this.name, this.price);
     }
 

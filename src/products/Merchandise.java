@@ -83,7 +83,7 @@ public class Merchandise implements Product {
 
     @Override
     public String toString() {
-        return String.format("Código: %d - %s: R$ %.2f - Entrega: R$ %.2f - Quantidade: %d\n",
+        return String.format("Mercadoria:\n\tCódigo: %d - %s: R$ %.2f - Entrega: R$ %.2f - Quantidade: %d\n",
                 this.code, this.name, this.price, this.delivery, this.amount);
     }
 

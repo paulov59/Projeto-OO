@@ -15,9 +15,9 @@ public class Main {
     private static EmployeeManagement employeeManagement = new EmployeeManagement();
     private static StockManagement stock = new StockManagement();
 
-    private static ArrayList<Product> products = new ArrayList<>();
-    private static ArrayList<Client> clients = new ArrayList<>();
-    private static ArrayList<Employee> employees = new ArrayList<>();
+    private static ArrayList<Product> products = new ArrayList<Product>();
+    private static ArrayList<Client> clients = new ArrayList<Client>();
+    private static ArrayList<Employee> employees = new ArrayList<Employee>();
 
 
     public static void main(String[] args) {
@@ -62,6 +62,7 @@ public class Main {
                 flag = false;
             }
         }
+        input.nextLine();
 
         switch (option) {
             case 1:
@@ -110,6 +111,7 @@ public class Main {
                     flag = false;
                 }
             }
+            input.nextLine();
             clear();
 
             switch (option) {
@@ -129,10 +131,8 @@ public class Main {
                     isOpen = cashier.closeCashier();
                     break;
                 case 6:
-                    return;
+                    break;
             }
-            System.out.println("Pressioner ENTER para prosseguir.");
-            input.nextLine();
         } else {
             System.out.println("Selecione:");
             System.out.println("\t[1] - Abrir caixa");
@@ -156,6 +156,7 @@ public class Main {
                     flag = false;
                 }
             }
+            input.nextLine();
             clear();
 
             switch (option) {
@@ -168,9 +169,9 @@ public class Main {
                 case 3:
                     break;
             }
-            System.out.println("Pressioner ENTER para prosseguir.");
-            input.nextLine();
         }
+        System.out.println("Pressione ENTER para prosseguir!");
+        input.nextLine();
     }
 
     private static void clientManagement() {
@@ -200,7 +201,7 @@ public class Main {
                 flag = false;
             }
         }
-
+        input.nextLine();
         clear();
 
         long cpf = 0;
@@ -212,12 +213,11 @@ public class Main {
                 clients.add(client);
                 break;
             case 2:
-                System.out.println("CPF do cliente que será removido: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        cpf = 0;
                         flag = true;
+                        System.out.print("CPF do cliente que será removido: ");
                         cpf = input.nextLong();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um CPF válido");
@@ -225,23 +225,24 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 client = clientManagement.findClient(cpf, clients);
                 if (client == null) {
                     System.out.println("Cliente não encontrado!");
                 } else {
                     clients.remove(client);
+                    System.out.println("Cliente removido!");
                 }
                 break;
             case 3:
                 clientManagement.showAllClients(clients);
                 break;
             case 4:
-                System.out.println("CPF do cliente que será buscado: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        cpf = 0;
                         flag = true;
+                        System.out.print("CPF do cliente que será buscado: ");
                         cpf = input.nextLong();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um CPF válido");
@@ -249,6 +250,7 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 client = clientManagement.findClient(cpf, clients);
                 if (client == null) {
                     System.out.println("Cliente não encontrado!");
@@ -257,12 +259,11 @@ public class Main {
                 }
                 break;
             case 5:
-                System.out.println("CPF do cliente que terá o cadastro alterado: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        cpf = 0;
                         flag = true;
+                        System.out.print("CPF do cliente que terá o cadastro alterado: ");
                         cpf = input.nextLong();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um CPF válido");
@@ -270,6 +271,7 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 Client aux = clientManagement.findClient(cpf, clients);
                 if (aux == null) {
                     System.out.println("Cliente não encontrado!");
@@ -313,6 +315,7 @@ public class Main {
                 flag = false;
             }
         }
+        input.nextLine();
         clear();
 
         long cpf = 0;
@@ -324,11 +327,10 @@ public class Main {
                 employees.add(employee);
                 break;
             case 2:
-                System.out.println("CPF do funcionário que será removido: ");
+                System.out.print("CPF do funcionário que será removido: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        cpf = 0;
                         flag = true;
                         cpf = input.nextLong();
                     } catch (Exception e) {
@@ -337,10 +339,13 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
+
                 employee = employeeManagement.findEmployee(cpf, employees);
                 if (employee == null) {
                     System.out.println("Funcionário não encontrado!");
                 } else {
+                    System.out.println("Funcionário removido!");
                     employees.remove(employee);
                 }
                 break;
@@ -348,11 +353,10 @@ public class Main {
                 employeeManagement.showAllEmployees(employees);
                 break;
             case 4:
-                System.out.println("CPF do funcionário que será buscado: ");
+                System.out.print("CPF do funcionário que será buscado: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        cpf = 0;
                         flag = true;
                         cpf = input.nextLong();
                     } catch (Exception e) {
@@ -361,6 +365,8 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
+
                 employee = employeeManagement.findEmployee(cpf, employees);
                 if (employee == null) {
                     System.out.println("Funcionário não encontrado!");
@@ -369,11 +375,10 @@ public class Main {
                 }
                 break;
             case 5:
-                System.out.println("CPF do funcionário que terá o cadastro alterado: ");
+                System.out.print("CPF do funcionário que terá o cadastro alterado: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        cpf = 0;
                         flag = true;
                         cpf = input.nextLong();
                     } catch (Exception e) {
@@ -382,6 +387,8 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
+
                 Employee aux = employeeManagement.findEmployee(cpf, employees);
                 if (aux == null) {
                     System.out.println("Funcionário não encontrado!");
@@ -391,8 +398,6 @@ public class Main {
                     employees.add(employee);
                 }
                 break;
-            case 6:
-                return;
         }
         System.out.println("Pressioner ENTER para prosseguir.");
         input.nextLine();
@@ -425,6 +430,7 @@ public class Main {
                 flag = false;
             }
         }
+        input.nextLine();
         clear();
 
         Product product;
@@ -436,12 +442,11 @@ public class Main {
                 products.add(product);
                 break;
             case 2:
-                System.out.print("Insira o código do produto: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        code = 0;
                         flag = true;
+                        System.out.print("Insira o código do produto: ");
                         code = input.nextInt();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um código válido");
@@ -449,6 +454,7 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 product = stock.findProduct(code, products);
                 if (product == null) {
                     System.out.println("Produto não encontrado!");
@@ -456,16 +462,17 @@ public class Main {
                     products.remove(product);
                     System.out.println("Produto removido!");
                 }
+                System.out.println("Pressione ENTER para prosseguir!");
+                input.nextLine();
                 break;
             case 3:
                 stock.showAllProducts(products);
                 break;
             case 4:
-                System.out.print("Insira o código do produto: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        code = 0;
+                        System.out.print("Insira o código do produto: ");
                         flag = true;
                         code = input.nextInt();
                     } catch (Exception e) {
@@ -474,20 +481,22 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 product = stock.findProduct(code, products);
                 if (product == null) {
                     System.out.println("Produto não encontrado!");
                 } else {
                     System.out.println("\t" + product + "\n");
                 }
+                System.out.println("Pressione ENTER para prosseguir!");
+                input.nextLine();
                 break;
             case 5:
-                System.out.print("Insira o código do produto: ");
                 flag = false;
                 while (!flag) {
                     try {
-                        code = 0;
                         flag = true;
+                        System.out.print("Insira o código do produto: ");
                         code = input.nextInt();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um código válido");
@@ -495,6 +504,7 @@ public class Main {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 Product aux = stock.findProduct(code, products);
                 if (aux == null) {
                     System.out.println("Produto não encontrado!");
@@ -503,12 +513,12 @@ public class Main {
                     products.remove(aux);
                     products.add(product);
                 }
+                System.out.println("Pressione ENTER para prosseguir!");
+                input.nextLine();
                 break;
             case 6:
-                return;
+                break;
         }
-        System.out.println("Pressioner ENTER para prosseguir.");
-        input.nextLine();
     }
 
     private static void clear() {

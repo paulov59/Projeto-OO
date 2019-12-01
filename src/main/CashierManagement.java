@@ -2,13 +2,15 @@ package main;
 
 import people.*;
 import products.*;
+
+import java.io.*;
 import java.util.*;
 
 public class CashierManagement {
 
-    static ArrayList<Sale> sales = new ArrayList<Sale>();
+    ArrayList<Sale> sales = new ArrayList<Sale>();
     Scanner input = new Scanner(System.in);
-    static double currentMoney;
+    double currentMoney;
 
     public CashierManagement() {
         this.currentMoney = 0;
@@ -71,22 +73,48 @@ public class CashierManagement {
     }
 
     public void toSell(ArrayList<Product> products, ArrayList<Client> clients) {
-        Client client;
-        System.out.print("Identificar o cliente? (s/n) ");
-        String option = input.nextLine();
-        while (!option.equals("s") && !option.equals("n") && !option.equals("S") && !option.equals("N")) {
-            System.out.println("Opção Inválida!");
+        String option;
+        boolean flag;
+        Client client = null;
+
+        if (products.isEmpty()) {
+            System.out.println("Não há produtos cadastrados!");
+            return;
+        }
+
+        if (!clients.isEmpty()) {
             System.out.print("Identificar o cliente? (s/n) ");
             option = input.nextLine();
-        }
-        if (option.equals("s") || option.equals("S")) {
-            System.out.print("Digite o CPF do cliente: ");
-            long cpf = input.nextLong();
-            ClientManagement clientManage = null;
-            client = clientManage.findClient(cpf, clients);
-            client.setSales();
-        }else {
-            client = null;
+
+            while (!option.equals("s") && !option.equals("n") && !option.equals("S") && !option.equals("N")) {
+                System.out.println("Opção Inválida!");
+                System.out.print("Identificar o cliente? (s/n) ");
+                option = input.nextLine();
+            }
+
+            if (option.equals("s") || option.equals("S")) {
+                long cpf = 0;
+                flag = false;
+                while (!flag) {
+                    try {
+                        flag = true;
+                        System.out.print("Digite o CPF do cliente: ");
+                        cpf = input.nextLong();
+                    } catch (Exception e) {
+                        System.out.println("Por favor, insira um CPF válido");
+                        input.nextLine();
+                        flag = false;
+                    }
+                    ClientManagement clientManage = new ClientManagement();
+                    client = clientManage.findClient(cpf, clients);
+                    if (client != null) {
+                        client.setSales();
+                    } else {
+                        System.out.println("Cliente não encontrado!");
+                        flag = false;
+                    }
+                }
+            }
         }
         int nSale = 1;
 
@@ -96,45 +124,41 @@ public class CashierManagement {
 
         Sale sale = new Sale(nSale, client);
 
-        System.out.print("Digite o código do produto: ");
         int code = 0;
-
-        boolean flag = false;
+        flag = false;
+        Product product = null;
 
         while (!flag) {
             try {
-                code = 0;
                 flag = true;
                 System.out.print("Digite o código do produto: ");
                 code = input.nextInt();
+                for (Product aux: products) {
+                    if (aux.getCode() == code) {
+                        product = aux;
+                        break;
+                    }
+                }
+                if (product == null) {
+                    System.out.println("Produto não encontrado!");
+                    throw new Exception("Produto não encontrado");
+                }
             } catch (Exception e) {
                 System.out.println("Por favor, insira um código válido");
                 input.nextLine();
                 flag = false;
             }
         }
-
-        Product product = null;
-        for (Product aux: products) {
-            if (aux.getCode() == code) {
-                product = aux;
-                break;
-            }
-        }
-
-        if (product == null) {
-            System.out.println("Produto não encontrado!");
-        } else {
-            sale.setProduct(product);
-            if( product instanceof Merchandise ) {
-                int amount = ((Merchandise) product).getAmount();
-                products.remove(product);
-                ((Merchandise) product).setAmount(amount-1);
-                products.add(product);
-            }
-        }
-
         input.nextLine();
+
+        sale.setProduct(product);
+        if( product instanceof Merchandise ) {
+            int amount = ((Merchandise) product).getAmount();
+            products.remove(product);
+            ((Merchandise) product).setAmount(amount-1);
+            products.add(product);
+        }
+
         while (true) {
             System.out.print("Deseja adicionar mais produtos? (s/n) ");
             option = input.nextLine();
@@ -144,27 +168,32 @@ public class CashierManagement {
                 option = input.nextLine();
             }
             if (option.equals("s") || option.equals("S")) {
-                System.out.print("Digite o código do produto: ");
 
+                flag = false;
                 while (!flag) {
                     try {
-                        code = 0;
                         flag = true;
                         System.out.print("Digite o código do produto: ");
                         code = input.nextInt();
+                        product = null;
+                        for (Product aux: products) {
+                            if (aux.getCode() == code) {
+                                product = aux;
+                                break;
+                            }
+                        }
+                        if (product == null) {
+                            System.out.println("Produto não encontrado!");
+                            throw new Exception("Produto não encontrado");
+                        }
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um código válido");
                         input.nextLine();
                         flag = false;
                     }
                 }
+                input.nextLine();
 
-                for (Product aux: products) {
-                    if (aux.getCode() == code) {
-                        product = aux;
-                        break;
-                    }
-                }
                 sale.setProduct(product);
                 if( product instanceof Merchandise ) {
                     int amount = ((Merchandise) product).getAmount();
@@ -187,14 +216,11 @@ public class CashierManagement {
     }
 
     public void cancelSale(ArrayList<Product> products) {
-        System.out.print("Nota fiscal: ");
-
         int nSale = 0;
         boolean flag = false;
 
         while (!flag) {
             try {
-                nSale = 0;
                 flag = true;
                 System.out.print("Nota fiscal: ");
                 nSale = input.nextInt();
@@ -204,6 +230,7 @@ public class CashierManagement {
                 flag = false;
             }
         }
+        input.nextLine();
 
         Sale toCancel = null;
         for (Sale sale:sales) {
@@ -213,18 +240,24 @@ public class CashierManagement {
             }
         }
 
-        currentMoney -= toCancel.getPrice();
-        ArrayList<Product> p = toCancel.getProducts();
-        sales.remove(toCancel);
-        Product product;
-        for (Product aux: p) {
-            if (aux instanceof Merchandise) {
-                product = aux;
-                int amount = ((Merchandise) product).getAmount();
-                products.remove(product);
-                ((Merchandise) product).setAmount(amount + 1);
-                products.add(product);
+        if (toCancel != null) {
+
+            currentMoney -= toCancel.getPrice();
+            ArrayList<Product> p = toCancel.getProducts();
+            sales.remove(toCancel);
+            Product product;
+            for (Product aux: p) {
+                if (aux instanceof Merchandise) {
+                    product = aux;
+                    int amount = ((Merchandise) product).getAmount();
+                    products.remove(product);
+                    ((Merchandise) product).setAmount(amount + 1);
+                    products.add(product);
+                }
             }
+            System.out.println("Venda cancelada");
+        } else {
+            System.out.println("Venda não encontrada");
         }
 
     }
@@ -235,7 +268,6 @@ public class CashierManagement {
 
         while (!flag) {
             try {
-                nSale = 0;
                 flag = true;
                 System.out.print("Nota fiscal: ");
                 nSale = input.nextInt();
@@ -245,18 +277,36 @@ public class CashierManagement {
                 flag = false;
             }
         }
-
-        for (Sale sale:sales) {
-           if (sale.getSale() == nSale) {
-               System.out.println(sale);
+        input.nextLine();
+        Sale sale = null;
+        for (Sale aux:sales) {
+           if (aux.getSale() == nSale) {
+               sale = aux;
                break;
            }
+        }
+
+        if (sale == null) {
+            System.out.println("Venda não encontrada");
+        } else {
+            System.out.println(sale);
+            for (Product product: sale.products) {
+                if (product instanceof Merchandise) {
+                    System.out.printf("Código: %d - %s: R$ %.2f\n", product.getCode(), product.getName(), product.getPrice());
+                } else {
+                    System.out.printf("Código: %d - %s: R$ %.2f\n", product.getCode(), product.getName(), product.getPrice());
+                }
+            }
         }
     }
 
     public void salesReport() {
-        for (Sale sale:sales) {
-            System.out.println(sale);
+        if (sales.isEmpty()) {
+            System.out.println("Sem vendas registradas");
+        } else {
+            for (Sale sale:sales) {
+                System.out.println(sale);
+            }
         }
     }
 

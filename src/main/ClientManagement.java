@@ -12,11 +12,25 @@ public class ClientManagement {
         System.out.print("Nome: ");
         String name = input.nextLine();
 
-        System.out.print("CPF: ");
-        long cpf = input.nextLong();
+        long cpf = 0;
+        boolean flag = false;
+
+        while (!flag) {
+            try {
+                flag = true;
+                System.out.print("CPF: ");
+                cpf = input.nextLong();
+            } catch (Exception e) {
+                System.out.println("Por favor, insira um CPF válido");
+                input.nextLine();
+                flag = false;
+            }
+        }
+        input.nextLine();
+
         Client client = new Client(name, cpf);
 
-        System.out.println("Endereço: ");
+        System.out.print("Endereço: ");
         String address = input.nextLine();
         client.setAddress(address);
 
@@ -25,7 +39,7 @@ public class ClientManagement {
 
     public void showAllClients(ArrayList<Client> clients){
         if (clients.isEmpty()) {
-            System.out.println("Não há funcionários cadastrados");
+            System.out.println("Não há clientes cadastrados");
         } else {
             for (Client client:clients) {
                 System.out.println(client);
@@ -45,6 +59,7 @@ public class ClientManagement {
     }
 
     public Client changeClient (Client client) {
+        System.out.println(client);
         System.out.println("Selecione:");
         System.out.println("\t[1] - Modificar nome");
         System.out.println("\t[2] - Modificar endereço");
@@ -55,12 +70,12 @@ public class ClientManagement {
 
         switch (option) {
             case 1:
-                System.out.println("Novo nome: ");
+                System.out.print("Novo nome: ");
                 String name = input.nextLine();
                 client.setName(name);
                 break;
             case 2:
-                System.out.println("Novo endereço: ");
+                System.out.print("Novo endereço: ");
                 String address = input.nextLine();
                 client.setAddress(address);
                 break;

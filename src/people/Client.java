@@ -31,7 +31,7 @@ public class Client extends People {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s\n\tCPF: %d\n\tEndereço: %s\n\tCompras realizadas: %d",
+        return String.format("Nome: %s\n\tCPF: %d\n\tEndereço: %s\n\tCompras realizadas: %d\n",
                 this.name, this.cpf, this.address, this.sales);
     }
 }

@@ -9,7 +9,7 @@ import java.util.*;
 public class Sale {
     protected int sale;
     protected Client client;
-    protected static float totalPrice;
+    protected float totalPrice;
     protected ArrayList<Product> products = new ArrayList<Product>();
 
     public Sale(int sale, Client client) {

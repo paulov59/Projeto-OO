@@ -28,6 +28,7 @@ public class EmployeeManagement {
                 flag = false;
             }
         }
+        input.nextLine();
         Employee employee = new Employee(name, cpf);
 
         flag = false;
@@ -42,13 +43,14 @@ public class EmployeeManagement {
                 flag = false;
             }
         }
+        input.nextLine();
         employee.setEmployeeId(employeeId);
 
         flag = false;
         while (!flag) {
             try {
                 flag = true;
-                System.out.println("Salário: R$ ");
+                System.out.print("Salário: R$ ");
                 salary = input.nextDouble();
             } catch (Exception e) {
                 System.out.println("Por favor, insira um valor válido");
@@ -56,6 +58,7 @@ public class EmployeeManagement {
                 flag = false;
             }
         }
+        input.nextLine();
         employee.setSalary(salary);
 
         return employee;
@@ -83,6 +86,7 @@ public class EmployeeManagement {
     }
 
     public Employee changeEmployee (Employee employee) {
+        System.out.println(employee);
         System.out.println("Selecione:");
         System.out.println("\t[1] - Modificar nome");
         System.out.println("\t[2] - Modificar salário");
@@ -104,10 +108,11 @@ public class EmployeeManagement {
                 flag = false;
             }
         }
+        input.nextLine();
 
         switch (option) {
             case 1:
-                System.out.println("Novo nome: ");
+                System.out.print("Novo nome: ");
                 String name = input.nextLine();
                 employee.setName(name);
                 break;
@@ -117,7 +122,7 @@ public class EmployeeManagement {
                 while (!flag) {
                     try {
                         flag = true;
-                        System.out.println("Novo salário: R$ ");
+                        System.out.print("Novo salário: R$ ");
                         salary = input.nextDouble();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira um valor válido");
@@ -125,6 +130,7 @@ public class EmployeeManagement {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 employee.setSalary(salary);
                 break;
             case 3:
@@ -133,7 +139,7 @@ public class EmployeeManagement {
                 while (!flag) {
                     try {
                         flag = true;
-                        System.out.println("Nova identidade profissional: ");
+                        System.out.print("Nova identidade profissional: ");
                         employeeId = input.nextInt();
                     } catch (Exception e) {
                         System.out.println("Por favor, insira uma identidade profissional válida");
@@ -141,6 +147,7 @@ public class EmployeeManagement {
                         flag = false;
                     }
                 }
+                input.nextLine();
                 employee.setEmployeeId(employeeId);
                 break;
             default:

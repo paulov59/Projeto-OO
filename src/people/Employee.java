@@ -31,6 +31,6 @@ public class Employee extends People {
     @Override
     public String toString() {
         return String.format("Nome: %s\n\tCPF: %d\n\tIdentidade profissional: %d\n\tSalário: R$ %.2f\n",
-                this.name, this, cpf, this.employeeId, this.salary);
+                this.name, this.cpf, this.employeeId, this.salary);
     }
 }
