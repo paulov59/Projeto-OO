@@ -138,8 +138,6 @@ public class StockManagement {
             case 3:
                 break;
         }
-        System.out.println("Produto adicionado.\nPressione ENTER para prosseguir!");
-        input.nextLine();
         return product;
     }
 
@@ -151,8 +149,6 @@ public class StockManagement {
                 System.out.println("\t" + product + "\n");
             }
         }
-        System.out.println("Pressione ENTER para prosseguir!");
-        input.nextLine();
     }
 
     public Product findProduct(int code, ArrayList<Product> products) {

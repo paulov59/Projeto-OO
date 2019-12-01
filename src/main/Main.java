@@ -282,7 +282,7 @@ public class Main {
                 }
                 break;
             case 6:
-                return;
+                break;
         }
         System.out.println("Pressioner ENTER para prosseguir.");
         input.nextLine();
@@ -292,7 +292,7 @@ public class Main {
         clear();
         System.out.println("Selecione:");
         System.out.println("\t[1] - Adicionar funcionário");
-        System.out.println("\t[2] - Demitir funcionário");
+        System.out.println("\t[2] - Remover funcionário");
         System.out.println("\t[3] - Visualizar funcionários");
         System.out.println("\t[4] - Buscar funcionário");
         System.out.println("\t[5] - Alterar cadastro de funcionário");
@@ -398,6 +398,9 @@ public class Main {
                     employees.add(employee);
                 }
                 break;
+
+            case 6:
+                break;
         }
         System.out.println("Pressioner ENTER para prosseguir.");
         input.nextLine();
@@ -462,8 +465,6 @@ public class Main {
                     products.remove(product);
                     System.out.println("Produto removido!");
                 }
-                System.out.println("Pressione ENTER para prosseguir!");
-                input.nextLine();
                 break;
             case 3:
                 stock.showAllProducts(products);
@@ -488,8 +489,6 @@ public class Main {
                 } else {
                     System.out.println("\t" + product + "\n");
                 }
-                System.out.println("Pressione ENTER para prosseguir!");
-                input.nextLine();
                 break;
             case 5:
                 flag = false;
@@ -513,12 +512,12 @@ public class Main {
                     products.remove(aux);
                     products.add(product);
                 }
-                System.out.println("Pressione ENTER para prosseguir!");
-                input.nextLine();
                 break;
             case 6:
                 break;
         }
+        System.out.println("Pressione ENTER para prosseguir!");
+        input.nextLine();
     }
 
     private static void clear() {
