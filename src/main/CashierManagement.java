@@ -326,12 +326,8 @@ public class CashierManagement {
             System.out.println("Venda não encontrada");
         } else {
             System.out.println(sale);
-            for (Product product: sale.products) {
-                if (product instanceof Merchandise) {
-                    System.out.printf("Código: %d - %s: R$ %.2f\n", product.getCode(), product.getName(), product.getPrice());
-                } else {
-                    System.out.printf("Código: %d - %s: R$ %.2f\n", product.getCode(), product.getName(), product.getPrice());
-                }
+            for (Product product: sale.getProducts()) {
+                System.out.printf("Código: %d - %s: R$ %.2f\n", product.getCode(), product.getName(), product.getPrice());
             }
         }
     }
